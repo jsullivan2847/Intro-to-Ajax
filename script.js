@@ -7,12 +7,13 @@
 //3.Axios....http client library
 
 //variables
+//const $allP = $("p");
 const $title = $("#title");
 const $year = $("#year");
 const $rated = $("#rated");
 const $poster = $('#poster');
 const $input = $('input[type="text"]');
-const url = "http://www.omdbapi.com/?apikey=1d3e34e8&t=Die+Hard";
+const url = "http://www.omdbapi.com/?apikey=1d3e34e8&t=";
 
 //I do not understand this variable lol
 let  movieData, userInput;
@@ -20,9 +21,7 @@ let  movieData, userInput;
 
 //Targets the input / submit buttons ("form")
 //on click of submit button, run the HandleGetData function
- $("form").on("submit", HandleGetData, function(){
-  console.log("works")
-});
+ $("form").on("submit", HandleGetData)
 
 
 
@@ -31,7 +30,7 @@ let  movieData, userInput;
 
 function HandleGetData(event) {
   //prevents page from being refreshed
-  //event.preventDefault();
+  event.preventDefault();
   //gets user input from input html element
   userInput = $input.val();
 
@@ -49,12 +48,13 @@ function HandleGetData(event) {
 //display data called once data is retrieved in
 // handle data
 function render() {
+  $poster.attr('src','');
   $title.text(movieData.Title);
   $year.text(movieData.Year);
   $rated.text(movieData.Rated);
-  $('main').append(`<img src="${movieData.Poster}"/>`);
+  $poster.attr('src',movieData.Poster);
   //$poster.(movieData.Poster);
 }
 
-HandleGetData();
+//HandleGetData();
 
